@@ -1,0 +1,87 @@
+plugins {
+    alias(libs.plugins.android.application)
+    id 'com.google.gms.google-services'
+}
+
+android {
+    namespace 'com.example.hridayasuraksha'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId "com.example.hridayasuraksha"
+        minSdk 34
+        targetSdk 35
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile(
+                    'proguard-android-optimize.txt'),
+                    'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    // ✅ This ensures BuildConfig is generated
+    buildFeatures {
+        buildConfig = true
+    }
+}
+
+dependencies {
+    implementation libs.appcompat
+    implementation libs.material
+    implementation libs.activity
+    implementation libs.constraintlayout
+
+    testImplementation libs.junit
+    androidTestImplementation libs.ext.junit
+    androidTestImplementation libs.espresso.core
+
+    // Charts
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
+    // Animations
+    implementation 'com.airbnb.android:lottie:6.4.0'
+
+    // GridLayout
+    implementation 'androidx.gridlayout:gridlayout:1.0.0'
+
+    // Firebase
+    implementation 'com.google.firebase:firebase-auth:23.0.0'
+    implementation 'com.google.firebase:firebase-firestore:25.0.0'
+
+    // Google Sign-In
+    implementation 'com.google.android.gms:play-services-auth:21.3.0'
+
+    // Google Fit
+    implementation "com.google.android.gms:play-services-fitness:21.2.0"
+
+    // Glide (for images)
+    implementation 'com.github.bumptech.glide:glide:4.16.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.16.0'
+    implementation 'com.google.firebase:firebase-storage:21.0.0'
+
+    implementation 'com.squareup.okhttp3:okhttp:4.11.0'
+    implementation 'androidx.browser:browser:1.5.0'
+
+
+    implementation platform("io.github.jan-tennert.supabase:bom:3.0.0")
+    implementation "io.github.jan-tennert.supabase:auth-kt"
+    implementation "io.github.jan-tennert.supabase:storage-kt"
+    implementation "io.github.jan-tennert.supabase:postgrest-kt"
+    implementation "io.ktor:ktor-client-android:2.3.2"
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1"
+    implementation "io.github.jan-tennert.supabase:gotrue-kt-android:1.1.0"
+    implementation 'org.json:json:20220320'
+
+}

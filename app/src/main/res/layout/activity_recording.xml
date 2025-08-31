@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F6F7F7">
+
+    <!-- Decorative gradient ribbon behind header -->
+    <View
+        android:id="@+id/headerRibbon"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:background="@drawable/bg_ribbon_gradient"/>
+
+    <!-- Top bar -->
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="24dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
+
+        <ImageView
+            android:id="@+id/backChip"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:background="@drawable/bg_icon_chip"
+            android:contentDescription="@null"
+            android:importantForAccessibility="no"/>
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_alignParentStart="true"
+            android:background="@android:color/transparent"
+            android:padding="8dp"
+            app:srcCompat="@drawable/ic_arrow"
+            app:tint="#2A2E2F"
+            android:contentDescription="Navigate back"/>
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Record heart sound"
+            android:textColor="#2A2E2F"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:accessibilityHeading="true"/>
+
+        <ImageView
+            android:id="@+id/helpChip"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/bg_icon_chip"
+            android:contentDescription="@null"
+            android:importantForAccessibility="no"/>
+
+        <ImageButton
+            android:id="@+id/btnHelp"
+            android:layout_width="50dp"
+            android:layout_height="70dp"
+            android:layout_alignParentEnd="true"
+            android:background="@android:color/transparent"
+            android:padding="8dp"
+            app:srcCompat="@drawable/ic_info_24"
+            app:tint="#2A2E2F"
+            android:contentDescription="Recording tips"/>
+    </RelativeLayout>
+
+    <!-- Content -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="56dp"
+        android:layout_marginBottom="110dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:gravity="center_horizontal">
+
+            <!-- Status card -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="3dp"
+                app:cardBackgroundColor="#DDEBEF">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        app:srcCompat="@drawable/ic_heart_sound"
+                        app:tint="#2A2E2F"
+                        android:contentDescription="@null"
+                        android:importantForAccessibility="no"/>
+
+                    <TextView
+                        android:id="@+id/statusText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="10dp"
+                        android:text="Press record to start"
+                        android:textColor="#2A2E2F"
+                        android:textSize="16sp"/>
+
+                    <TextView
+                        android:id="@+id/liveBadge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:text="LIVE"
+                        android:textStyle="bold"
+                        android:textSize="12sp"
+                        android:textColor="#1B5E20"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:paddingTop="6dp"
+                        android:paddingBottom="6dp"
+                        android:background="@drawable/bg_status_present"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Glass meter card -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardMeters"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="#1AF0F0F0"
+                app:cardBackgroundColor="#F9FFFFFF">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="24dp"
+                    android:gravity="center_horizontal">
+
+                    <TextView
+                        android:id="@+id/timerText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="00:00"
+                        android:textSize="36sp"
+                        android:textStyle="bold"
+                        android:textColor="#2A2E2F"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Recording time"
+                        android:textSize="12sp"
+                        android:textColor="#6B7376"
+                        android:layout_marginTop="4dp"/>
+
+                    <!-- Waveform bars -->
+                    <LinearLayout
+                        android:id="@+id/levelBars"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:layout_marginTop="16dp"
+                        android:gravity="bottom"
+                        android:orientation="horizontal">
+
+                        <View android:id="@+id/bar1" android:layout_width="6dp" android:layout_height="10dp" android:background="#BFDCD3"/>
+                        <View android:layout_width="6dp" android:layout_height="1dp" android:background="@android:color/transparent"/>
+                        <View android:id="@+id/bar2" android:layout_width="6dp" android:layout_height="18dp" android:background="#BFDCD3"/>
+                        <View android:layout_width="6dp" android:layout_height="1dp" android:background="@android:color/transparent"/>
+                        <View android:id="@+id/bar3" android:layout_width="6dp" android:layout_height="14dp" android:background="#BFDCD3"/>
+                        <View android:layout_width="6dp" android:layout_height="1dp" android:background="@android:color/transparent"/>
+                        <View android:id="@+id/bar4" android:layout_width="6dp" android:layout_height="20dp" android:background="#BFDCD3"/>
+                        <View android:layout_width="6dp" android:layout_height="1dp" android:background="@android:color/transparent"/>
+                        <View android:id="@+id/bar5" android:layout_width="6dp" android:layout_height="12dp" android:background="#BFDCD3"/>
+                    </LinearLayout>
+
+                    <ProgressBar
+                        android:id="@+id/levelBar"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:layout_marginTop="16dp"
+                        android:max="100"
+                        android:progress="0"
+                        android:progressTint="#60F86B"
+                        android:progressBackgroundTint="#E8F1EE"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Tips row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp"
+                    android:text="Place mic near chest"
+                    android:textSize="12sp"
+                    android:textColor="#2A2E2F"
+                    android:background="@drawable/bg_icon_chip"/>
+
+                <View
+                    android:layout_width="8dp"
+                    android:layout_height="1dp"
+                    android:background="@android:color/transparent"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp"
+                    android:text="Stay still and quiet"
+                    android:textSize="12sp"
+                    android:textColor="#2A2E2F"
+                    android:background="@drawable/bg_icon_chip"/>
+            </LinearLayout>
+
+            <!-- Upload from phone (card/button) -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardUpload"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="#FFFFFF"
+                android:clickable="true"
+                android:focusable="true"
+                android:contentDescription="Upload a heart sound file from phone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        app:srcCompat="@drawable/ic_upload_24"
+                        app:tint="#2A2E2F"
+                        android:contentDescription="@null"
+                        android:importantForAccessibility="no"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginStart="12dp">
+
+                        <TextView
+                            android:id="@+id/uploadTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Upload from phone"
+                            android:textColor="#2A2E2F"
+                            android:textSize="16sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/uploadFileName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="WAV/MP3"
+                            android:textColor="#6B7376"
+                            android:textSize="12sp"/>
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        app:srcCompat="@drawable/ic_arrow_right_24"
+                        app:tint="#8A9194"
+                        android:contentDescription="@null"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Session summary chips (appear after recording/submission) -->
+            <LinearLayout
+                android:id="@+id/sessionChips"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/chipDuration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="00:12"
+                    android:textColor="#2A2E2F"
+                    android:textSize="12sp"
+                    android:padding="8dp"
+                    android:background="@drawable/bg_icon_chip"/>
+
+                <View
+                    android:layout_width="8dp"
+                    android:layout_height="1dp"
+                    android:background="@android:color/transparent"/>
+
+                <TextView
+                    android:id="@+id/chipSize"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="256KB"
+                    android:textColor="#2A2E2F"
+                    android:textSize="12sp"
+                    android:padding="8dp"
+                    android:background="@drawable/bg_icon_chip"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Radial glow plate under controls -->
+    <View
+        android:id="@+id/pulseHalo"
+        android:layout_width="220dp"
+        android:layout_height="80dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="88dp"
+        android:background="@drawable/bg_control_glow"
+        android:visibility="gone"/>
+
+    <!-- Bottom controls -->
+    <LinearLayout
+        android:id="@+id/controls"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:gravity="center"
+        android:layout_marginBottom="28dp">
+
+        <!-- Primary: Record capsule -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnRecord"
+            style="@style/Widget.Material3.Button.ElevatedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="52dp"
+            android:text="Record"
+            android:textAllCaps="false"
+            android:textColor="#2A2E2F"
+            app:backgroundTint="#CFE7D7"
+            app:cornerRadius="26dp"
+            app:icon="@drawable/ic_mic_24"
+            app:iconTint="#2A2E2F"
+            app:iconPadding="10dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginStart="12dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnPause"
+                style="@style/Widget.Material3.Button.ElevatedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:text="Pause"
+                android:textAllCaps="false"
+                android:textColor="#2A2E2F"
+                app:backgroundTint="#EDEDF1"
+                app:cornerRadius="24dp"
+                app:icon="@drawable/ic_pause_24"
+                app:iconTint="#2A2E2F"
+                app:iconPadding="8dp"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSubmit"
+                style="@style/Widget.Material3.Button.ElevatedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginStart="8dp"
+                android:text="Submit"
+                android:textAllCaps="false"
+                android:textColor="#2A2E2F"
+                android:contentDescription="Submit audio for analysis"
+                app:backgroundTint="#DDEBE6"
+                app:cornerRadius="24dp"
+                app:icon="@drawable/ic_upload_24"
+                app:iconTint="#2A2E2F"
+                app:iconPadding="8dp"/>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

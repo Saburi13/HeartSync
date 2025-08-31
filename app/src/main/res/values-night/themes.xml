@@ -1,0 +1,25 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.App" parent="Theme.Material3.Light.NoActionBar">
+        <item name="bottomNavigationStyle">@style/App.BottomNavigation</item>
+    </style>
+
+    <style name="App.BottomNavigation" parent="Widget.Material3.BottomNavigationView">
+        <item name="itemIconSize">24dp</item>
+        <item name="itemTextAppearanceActive">@style/App.BottomNav.TextActive</item>
+        <item name="itemTextAppearanceInactive">@style/App.BottomNav.TextInactive</item>
+        <item name="itemHorizontalTranslationEnabled">false</item>
+        <item name="labelVisibilityMode">labeled</item>
+        <item name="elevation">0dp</item>
+        <item name="useCompatPadding">false</item>
+    </style>
+
+    <style name="App.BottomNav.TextActive" parent="@style/TextAppearance.Material3.LabelLarge">
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="App.BottomNav.TextInactive" parent="@style/TextAppearance.Material3.LabelLarge">
+        <item name="android:textStyle">normal</item>
+    </style>
+
+
+</resources>

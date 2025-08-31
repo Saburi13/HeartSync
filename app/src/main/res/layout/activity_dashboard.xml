@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F6F7F7">
+
+    <!-- Top bar -->
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="24dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
+
+        <!-- Back chip + icon -->
+        <ImageView
+            android:id="@+id/backChip"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:background="@drawable/bg_icon_chip"
+            android:contentDescription="@null"
+            android:importantForAccessibility="no"/>
+
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentStart="true"
+            android:background="@android:color/transparent"
+            android:padding="8dp"
+            android:contentDescription="@string/cd_navigate_back"
+            app:tint="#2A2E2F"
+            app:srcCompat="@drawable/ic_arrow"/>
+
+        <!-- Title as heading -->
+        <TextView
+            android:id="@+id/analyticsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Analytics"
+            android:textColor="#2A2E2F"
+            android:textStyle="bold"
+            android:textSize="28sp"
+            android:importantForAccessibility="yes"
+            android:accessibilityHeading="true"/>
+
+        <!-- Search chip + icon -->
+        <ImageView
+            android:id="@+id/searchChip"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/bg_icon_chip"
+            android:contentDescription="@null"
+            android:importantForAccessibility="no"/>
+
+        <ImageButton
+            android:id="@+id/searchButton"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentEnd="true"
+            android:background="@android:color/transparent"
+            android:padding="8dp"
+            android:contentDescription="@string/cd_search"
+            app:tint="#2A2E2F"
+            app:srcCompat="@drawable/search"/>
+    </RelativeLayout>
+
+    <!-- Scrollable content -->
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="56dp"
+        android:layout_marginBottom="96dp"
+        android:importantForAccessibility="yes">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Murmur detection card (TOP MAIN CARD) -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardMurmur"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="3dp"
+                app:cardBackgroundColor="#E9F0FF"
+                android:focusable="true"
+                android:clickable="false"
+                android:importantForAccessibility="yes"
+                android:contentDescription="@string/cd_murmur_summary">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="24dp">
+
+                    <!-- Header row -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            app:srcCompat="@drawable/ic_heart_sound"
+                            app:tint="#2A2E2F"
+                            android:contentDescription="@null"
+                            android:importantForAccessibility="no"/>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="8dp"
+                            android:text="Murmur detection"
+                            android:textColor="#2A2E2F"
+                            android:textSize="16sp"
+                            android:textStyle="bold"/>
+
+                        <!-- Status pill (bind text at runtime) -->
+                        <TextView
+                            android:id="@+id/murmurStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:paddingTop="6dp"
+                            android:paddingBottom="6dp"
+                            android:text="Murmurs present"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:textColor="#5E1B1B"
+                            android:background="@drawable/bg_status_present"/>
+                    </LinearLayout>
+
+                    <!-- Big percent + progress ring -->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="110dp"
+                        android:layout_marginTop="12dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:id="@+id/murmurConfidence"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="93%"
+                                android:textSize="44sp"
+                                android:textStyle="bold"
+                                android:textColor="#2A2E2F"/>
+
+                            <TextView
+                                android:id="@+id/tvHeartRate"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Confidence"
+                                android:textSize="13sp"
+                                android:textColor="#6B7376"/>
+                        </LinearLayout>
+
+                        <FrameLayout
+                            android:layout_width="110dp"
+                            android:layout_height="110dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:importantForAccessibility="no">
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/ring_pale"/>
+
+                            <ProgressBar
+                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:id="@+id/murmurProgress"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:max="100"
+                                android:progress="93"
+                                android:progressDrawable="@drawable/ring_progress_murmur"
+                                android:rotation="-90"
+                                android:contentDescription="@string/cd_murmur_progress"
+                                android:importantForAccessibility="yes"/>
+
+                            <TextView
+                                android:id="@+id/murmurDecision"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="Present"
+                                android:textSize="14sp"
+                                android:textColor="#2A2E2F"/>
+                        </FrameLayout>
+                    </RelativeLayout>
+
+                    <!-- Clip meta -->
+                    <TextView
+                        android:id="@+id/clipName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="clip_2025_08_19.wav • 12s"
+                        android:textSize="12sp"
+                        android:textColor="#6B7376"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Achievement/notice card -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardNotice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="#DDEBEF"
+                android:focusable="true"
+                android:clickable="false"
+                android:importantForAccessibility="yes"
+                android:contentDescription="@string/cd_notice">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="72dp"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="16dp"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        app:srcCompat="@drawable/ic_crown"
+                        app:tint="#4C9ED1"
+                        android:contentDescription="@null"
+                        android:importantForAccessibility="no"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="Wow! You made it! You walked 5% more than last month."
+                        android:textColor="#2A2E2F"
+                        android:textSize="14sp"
+                        android:importantForAccessibility="no"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Grid: row1 = Steps|Calories, row2 = Walking|Spacer -->
+            <GridLayout
+                android:id="@+id/gridStats"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="2">
+
+                <!-- Steps -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardSteps"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="24dp"
+                    app:cardElevation="3dp"
+                    app:cardBackgroundColor="#D9D2E9"
+                    android:focusable="true"
+                    android:clickable="false"
+                    android:importantForAccessibility="yes"
+                    android:contentDescription="@string/cd_steps">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="26dp"
+                        android:gravity="center"
+                        android:importantForAccessibility="no">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            app:srcCompat="@drawable/ic_steps"
+                            app:tint="#8C7BB5"
+                            android:contentDescription="@null"
+                            android:importantForAccessibility="no"/>
+
+                        <TextView
+                            android:id="@+id/tvSteps"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="8,412"
+                            android:textStyle="bold"
+                            android:textSize="20sp"
+                            android:textColor="#2A2E2F"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Steps"
+                            android:textSize="12sp"
+                            android:textColor="#6B7376"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Calories -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardCalories"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="24dp"
+                    app:cardElevation="3dp"
+                    app:cardBackgroundColor="#DCECCB"
+                    android:focusable="true"
+                    android:clickable="false"
+                    android:importantForAccessibility="yes"
+                    android:contentDescription="@string/cd_calories">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="26dp"
+                        android:gravity="center"
+                        android:importantForAccessibility="no">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            app:srcCompat="@drawable/ic_calories"
+                            app:tint="#2A2E2F"
+                            android:contentDescription="@null"
+                            android:importantForAccessibility="no"/>
+
+                        <TextView
+                            android:id="@+id/tvCalories"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2458 kcal"
+                            android:textStyle="bold"
+                            android:textSize="20sp"
+                            android:textColor="#2A2E2F"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Calories burned"
+                            android:textSize="12sp"
+                            android:textColor="#6B7376"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Walking (same size as Steps/Calories) -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardWalkingSmall"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="24dp"
+                    app:cardElevation="3dp"
+                    app:cardBackgroundColor="#DDEBE6"
+                    android:focusable="true"
+                    android:clickable="false"
+                    android:importantForAccessibility="yes"
+                    android:contentDescription="@string/cd_walking_summary">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="26dp"
+                        android:gravity="center"
+                        android:importantForAccessibility="no">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            app:srcCompat="@drawable/ic_steps"
+                            app:tint="#2A2E2F"
+                            android:contentDescription="@null"
+                            android:importantForAccessibility="no"/>
+
+                        <TextView
+                            android:id="@+id/walkingPercentSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="88%"
+                            android:textStyle="bold"
+                            android:textSize="20sp"
+                            android:textColor="#2A2E2F"/>
+
+                        <TextView
+                            android:id="@+id/walkingMiles"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="56 miles this month"
+                            android:textSize="12sp"
+                            android:textColor="#6B7376"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Spacer to balance right column under Calories -->
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_columnWeight="1"/>
+            </GridLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Rounded bottom nav container -->
+    <FrameLayout
+        android:id="@+id/bottomContainer"
+        android:layout_width="match_parent"
+        android:layout_height="76dp"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_bottom_nav"
+        android:elevation="8dp"
+        android:clipToPadding="false"
+        android:clipToOutline="true">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNav"
+            style="@style/App.BottomNavigation"
+            android:layout_width="match_parent"
+            android:layout_height="92dp"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:paddingStart="8dp"
+            android:paddingTop="0dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="0dp"
+            app:itemBackground="@null"
+            app:itemHorizontalTranslationEnabled="false"
+            app:itemIconSize="24dp"
+            app:itemIconTint="@color/nav_item_selector"
+            app:itemRippleColor="@null"
+            app:itemTextAppearanceActive="@style/App.BottomNav.TextActive"
+            app:itemTextAppearanceInactive="@style/App.BottomNav.TextInactive"
+            app:itemTextColor="@color/nav_item_selector"
+            app:labelVisibilityMode="labeled"
+            app:menu="@menu/bottom_nav_menu" />
+    </FrameLayout>
+
+    <!-- Center FAB -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabCentral"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginLeft="290dp"
+        android:layout_marginBottom="112dp"
+        android:contentDescription="@string/cd_new_activity"
+        app:backgroundTint="#CFE7D7"
+        app:tint="#2A2E2F"
+        app:fabCustomSize="64dp"
+        app:srcCompat="@drawable/ic_plus_24"
+        app:borderWidth="0dp"
+        app:useCompatPadding="false"
+        app:pressedTranslationZ="0dp"
+        app:elevation="12dp" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

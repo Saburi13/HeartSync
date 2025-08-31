@@ -1,0 +1,659 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_login_glass">
+
+    <!-- Curved glass header -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/headerGlass"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="44dp"
+        app:cardCornerRadius="28dp"
+        app:cardBackgroundColor="#F7FFFFFF"
+        app:strokeWidth="1dp"
+        app:strokeColor="#18C8D7CD"
+        app:cardElevation="8dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp">
+
+            <!-- Gradient halo -->
+            <View
+                android:layout_width="220dp"
+                android:layout_height="220dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="-60dp"
+                android:layout_marginEnd="-40dp"
+                android:background="@drawable/bg_soft_halo"
+                android:alpha="0.7"
+                android:importantForAccessibility="no" />
+
+            <!-- Floating avatar with status ring -->
+            <FrameLayout
+                android:id="@+id/avatarRing"
+                android:layout_width="84dp"
+                android:layout_height="84dp"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="6dp">
+
+                <ImageView
+                    android:id="@+id/imgAvatar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerInside"
+                    android:padding="16dp"
+                    android:background="@drawable/bg_avatar_ring"
+                    android:src="@drawable/ic_user_24"
+                    android:contentDescription="@null"/>
+
+                <!-- Tiny camera chip -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/btnChangePhoto"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_gravity="end|bottom"
+                    app:cardCornerRadius="14dp"
+                    app:cardElevation="2dp"
+                    app:cardBackgroundColor="#FFFFFF">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="6dp"
+                        android:src="@drawable/ic_edit_24"
+                        app:tint="#2A2E2F"
+                        android:contentDescription="Change photo"/>
+                </com.google.android.material.card.MaterialCardView>
+            </FrameLayout>
+
+            <!-- Name, email and badges -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_toEndOf="@id/avatarRing"
+                android:layout_marginStart="12dp"
+                android:layout_alignTop="@id/avatarRing">
+
+                <TextView
+                    android:id="@+id/tvName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Your Name"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:textColor="#2A2E2F"/>
+
+                <TextView
+                    android:id="@+id/tvEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="name@email.com"
+                    android:textSize="13sp"
+                    android:textColor="#6B7376"/>
+
+                <!-- Badges row -->
+                <LinearLayout
+                    android:id="@+id/badgeRow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp">
+
+                    <TextView
+                        android:id="@+id/badgeVerified"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Verified"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:textColor="#1E8E5A"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="5dp"
+                        android:background="@drawable/bg_pill_positive"/>
+
+                    <View android:layout_width="6dp" android:layout_height="1dp"/>
+
+                    <TextView
+                        android:id="@+id/badgePro"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Pro"
+                        android:textSize="11sp"
+                        android:textColor="#2A2E2F"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="5dp"
+                        android:background="@drawable/bg_icon_chip"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Edit profile CTA -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnEditProfile"
+                style="@style/Widget.Material3.Button.ElevatedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:text="Edit profile"
+                android:textAllCaps="false"
+                android:textColor="#2A2E2F"
+                app:backgroundTint="#EDEDF1"
+                app:cornerRadius="20dp"
+                app:icon="@drawable/ic_edit_24"
+                app:iconTint="#2A2E2F"
+                app:iconPadding="6dp"/>
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Content scroll; extra bottom padding so it won't hide behind nav -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="220dp"
+        android:fillViewport="true"
+        android:paddingHorizontal="16dp"
+        android:paddingBottom="140dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Section pill -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Snapshot"
+                android:textColor="#2A2E2F"
+                android:textStyle="bold"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="6dp"
+                android:background="@drawable/bg_section_pill"
+                android:layout_marginTop="58dp"
+                android:layout_marginBottom="8dp"/>
+
+            <!-- Snapshot stats -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="#FFFFFF">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+                        <TextView
+                            android:id="@+id/tvRecordingCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="12"
+                            android:textStyle="bold"
+                            android:textSize="18sp"
+                            android:textColor="#2A2E2F"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Recordings"
+                            android:textSize="12sp"
+                            android:textColor="#6B7376"/>
+                    </LinearLayout>
+
+                    <View android:layout_width="1dp" android:layout_height="40dp" android:background="#EEF1F2"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+                        <TextView
+                            android:id="@+id/tvLastAnalysis"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Aug 20, 11:30"
+                            android:textStyle="bold"
+                            android:textSize="18sp"
+                            android:textColor="#2A2E2F"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Last analysis"
+                            android:textSize="12sp"
+                            android:textColor="#6B7376"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Section pill -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="History and Integrations"
+                android:textColor="#2A2E2F"
+                android:textStyle="bold"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="6dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/bg_section_pill"/>
+
+            <!-- History & Integrations card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="#FFFFFF">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <!-- Past recordings -->
+                    <LinearLayout
+                        android:id="@+id/rowRecordings"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="8dp"
+                        android:background="?attr/selectableItemBackground">
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_tape_24"
+                            app:tint="#2A2E2F"
+                            android:contentDescription="@null"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="12dp"
+                            android:text="Past recordings"
+                            android:textColor="#2A2E2F"
+                            android:textSize="14sp"/>
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_arrow_right_24"
+                            app:tint="#8A9194"
+                            android:contentDescription="@null"/>
+                    </LinearLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#EEF1F2"/>
+
+                    <!-- Reports -->
+                    <LinearLayout
+                        android:id="@+id/rowReports"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="8dp"
+                        android:background="?attr/selectableItemBackground">
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_file_24"
+                            app:tint="#2A2E2F"
+                            android:contentDescription="@null"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="12dp"
+                            android:text="Reports and exports"
+                            android:textColor="#2A2E2F"
+                            android:textSize="14sp"/>
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_arrow_right_24"
+                            app:tint="#8A9194"
+                            android:contentDescription="@null"/>
+                    </LinearLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#EEF1F2"/>
+
+                    <!-- Google Fit connection row -->
+                    <LinearLayout
+                        android:id="@+id/rowGoogleFit"
+                        android:layout_width="match_parent"
+                        android:layout_height="72dp"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="8dp">
+
+                        <ImageView
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:src="@drawable/ic_google_placeholder"
+                            android:contentDescription="@null"/>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="12dp">
+                            <TextView
+                                android:id="@+id/tvFitTitle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Google Fit"
+                                android:textStyle="bold"
+                                android:textColor="#2A2E2F"
+                                android:textSize="14sp"/>
+                            <TextView
+                                android:id="@+id/tvFitStatus"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Not connected"
+                                android:textColor="#6B7376"
+                                android:textSize="12sp"/>
+                        </LinearLayout>
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnConnectFit"
+                            style="@style/Widget.Material3.Button.ElevatedButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="36dp"
+                            android:text="Connect"
+                            android:textAllCaps="false"
+                            android:textColor="#2A2E2F"
+                            app:backgroundTint="#DDEBE6"
+                            app:cornerRadius="18dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Section pill -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Privacy and Security"
+                android:textColor="#2A2E2F"
+                android:textStyle="bold"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="6dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/bg_section_pill"/>
+
+            <!-- Privacy & Security -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="#FFFFFF">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <LinearLayout
+                        android:id="@+id/rowExport"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="8dp"
+                        android:background="?attr/selectableItemBackground">
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_download_24"
+                            app:tint="#2A2E2F"
+                            android:contentDescription="@null"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="12dp"
+                            android:text="Export data (PDF/ZIP)"
+                            android:textColor="#2A2E2F"
+                            android:textSize="14sp"/>
+                    </LinearLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#EEF1F2"/>
+
+                    <LinearLayout
+                        android:id="@+id/rowDeleteData"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="8dp"
+                        android:background="?attr/selectableItemBackground">
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_delete_24"
+                            app:tint="#D32F2F"
+                            android:contentDescription="@null"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="12dp"
+                            android:text="Delete my data"
+                            android:textColor="#D32F2F"
+                            android:textSize="14sp"/>
+                    </LinearLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#EEF1F2"/>
+
+                    <LinearLayout
+                        android:id="@+id/rowBiometric"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="8dp">
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_lock_24"
+                            app:tint="#2A2E2F"
+                            android:contentDescription="@null"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="12dp"
+                            android:text="Biometric lock"
+                            android:textColor="#2A2E2F"
+                            android:textSize="14sp"/>
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:id="@+id/switchBiometric"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Section pill -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="App"
+                android:textColor="#2A2E2F"
+                android:textStyle="bold"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="6dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/bg_section_pill"/>
+
+            <!-- App section -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="#FFFFFF">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <LinearLayout
+                        android:id="@+id/rowNotifications"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="8dp">
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_bell_24"
+                            app:tint="#2A2E2F"
+                            android:contentDescription="@null"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="12dp"
+                            android:text="Notifications"
+                            android:textColor="#2A2E2F"
+                            android:textSize="14sp"/>
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:id="@+id/switchNotifications"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#EEF1F2"/>
+
+                    <LinearLayout
+                        android:id="@+id/rowTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="8dp"
+                        android:background="?attr/selectableItemBackground">
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_theme_24"
+                            app:tint="#2A2E2F"
+                            android:contentDescription="@null"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="12dp"
+                            android:text="Appearance (Light/Dark)"
+                            android:textColor="#2A2E2F"
+                            android:textSize="14sp"/>
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_arrow_right_24"
+                            app:tint="#8A9194"
+                            android:contentDescription="@null"/>
+                    </LinearLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#EEF1F2"/>
+
+                    <LinearLayout
+                        android:id="@+id/rowAbout"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="8dp">
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_info_24"
+                            app:tint="#2A2E2F"
+                            android:contentDescription="@null"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="12dp"
+                            android:text="About Hridaya Suraksha"
+                            android:textColor="#2A2E2F"
+                            android:textSize="14sp"/>
+                        <TextView
+                            android:id="@+id/tvVersion"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="v1.0.0"
+                            android:textColor="#6B7376"
+                            android:textSize="12sp"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+            <Button
+                android:id="@+id/btnLogout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Logout"
+                android:layout_margin="16dp"
+                android:backgroundTint="@color/red"
+                android:textColor="@android:color/white"
+                android:drawableStart="@drawable/ic_logout"
+                android:padding="12dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Your custom bottom navigation container (exact snippet integrated) -->
+    <FrameLayout
+        android:id="@+id/bottomContainer"
+        android:layout_width="match_parent"
+        android:layout_height="76dp"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_bottom_nav"
+        android:elevation="8dp"
+        android:clipToPadding="false"
+        android:clipToOutline="true">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNav"
+            style="@style/App.BottomNavigation"
+            android:layout_width="match_parent"
+            android:layout_height="92dp"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:paddingStart="8dp"
+            android:paddingTop="0dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="0dp"
+            app:itemBackground="@null"
+            app:itemHorizontalTranslationEnabled="false"
+            app:itemIconSize="24dp"
+            app:itemIconTint="@color/nav_item_selector"
+            app:itemRippleColor="@null"
+            app:itemTextAppearanceActive="@style/App.BottomNav.TextActive"
+            app:itemTextAppearanceInactive="@style/App.BottomNav.TextInactive"
+            app:itemTextColor="@color/nav_item_selector"
+            app:labelVisibilityMode="labeled"
+            app:menu="@menu/bottom_nav_menu" />
+    </FrameLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

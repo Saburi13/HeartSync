@@ -1,0 +1,609 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F6F7F7">
+
+    <!-- Hero verdict banner -->
+    <FrameLayout
+        android:id="@+id/heroBanner"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:background="@drawable/bg_result_hero">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="40dp"
+            android:orientation="horizontal"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                app:srcCompat="@drawable/ic_heart_sound"
+                app:tint="#2A2E2F"
+                android:contentDescription="@null"
+                android:importantForAccessibility="no"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="10dp">
+
+                <TextView
+                    android:id="@+id/heroTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Analysis result"
+                    android:textColor="#2A2E2F"
+                    android:textStyle="bold"
+                    android:textSize="20sp"/>
+
+                <TextView
+                    android:id="@+id/heroSub"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="clip_2025_08_19.wav -  12s"
+                    android:textColor="#6B7376"
+                    android:textSize="12sp"/>
+            </LinearLayout>
+
+            <!-- Share action chip -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:background="@drawable/bg_icon_chip"
+                android:gravity="center"
+                android:paddingHorizontal="6dp"
+                android:clipToPadding="false"
+                android:clipToOutline="true">
+
+                <ImageButton
+                    android:id="@+id/btnShareTop"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@android:color/transparent"
+                    android:padding="8dp"
+                    app:srcCompat="@drawable/ic_share_24"
+                    app:tint="#2A2E2F"
+                    android:contentDescription="Share results"/>
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+    <!-- App bar over hero (back/title only) -->
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="24dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
+
+        <ImageView
+            android:id="@+id/backChip"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:background="@drawable/bg_icon_chip"
+            android:contentDescription="@null"
+            android:importantForAccessibility="no"/>
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:background="@android:color/transparent"
+            android:padding="8dp"
+            app:srcCompat="@drawable/ic_arrow"
+            app:tint="#2A2E2F"
+            android:contentDescription="Navigate back"/>
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Results"
+            android:textColor="#2A2E2F"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:accessibilityHeading="true"/>
+    </RelativeLayout>
+
+    <!-- Scrollable content -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="140dp"
+        android:layout_marginBottom="96dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Dual insight: ring + findings stack -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardDual"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="3dp"
+                app:cardBackgroundColor="#FFFFFF">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:padding="20dp">
+
+                    <!-- Ring -->
+                    <FrameLayout
+                        android:id="@+id/confidenceContainer"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:importantForAccessibility="no">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/ring_pale"/>
+
+                        <ProgressBar
+                            android:id="@+id/confidenceRing"
+                            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:max="100"
+                            android:progress="93"
+                            android:progressDrawable="@drawable/ring_progress_murmur"
+                            android:rotation="-90"
+                            android:contentDescription="Confidence ring"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_gravity="center">
+                            <TextView
+                                android:id="@+id/confidenceText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="93%"
+                                android:textStyle="bold"
+                                android:textSize="20sp"
+                                android:textColor="#2A2E2F"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Confidence"
+                                android:textSize="12sp"
+                                android:textColor="#6B7376"/>
+                        </LinearLayout>
+                    </FrameLayout>
+
+                    <!-- Findings stack -->
+                    <LinearLayout
+                        android:id="@+id/findingsStack"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@id/confidenceContainer"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="20dp"
+                        android:orientation="vertical">
+
+                        <!-- Verdict pill -->
+                        <TextView
+                            android:id="@+id/resultStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Murmurs present"
+                            android:textStyle="bold"
+                            android:textSize="12sp"
+                            android:textColor="#1B5E20"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:paddingTop="6dp"
+                            android:paddingBottom="6dp"
+                            android:background="@drawable/bg_status_present"/>
+
+                        <!-- Tag row -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="8dp">
+
+                            <TextView
+                                android:id="@+id/tagPitch"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Systolic"
+                                android:textSize="12sp"
+                                android:textColor="#2A2E2F"
+                                android:padding="8dp"
+                                android:background="@drawable/bg_icon_chip"/>
+
+                            <View
+                                android:layout_width="6dp"
+                                android:layout_height="1dp"/>
+
+                            <TextView
+                                android:id="@+id/tagLocation"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Apex"
+                                android:textSize="12sp"
+                                android:textColor="#2A2E2F"
+                                android:padding="8dp"
+                                android:background="@drawable/bg_icon_chip"/>
+                        </LinearLayout>
+
+                        <!-- Clip meta -->
+                        <TextView
+                            android:id="@+id/clipMeta"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="clip_2025_08_19.wav -  12s -  256KB"
+                            android:textColor="#6B7376"
+                            android:textSize="12sp"
+                            android:layout_marginTop="8dp"/>
+                    </LinearLayout>
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Scrubbable timeline -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="3dp"
+                app:cardBackgroundColor="#FFFFFF">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="18dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Timeline"
+                        android:textStyle="bold"
+                        android:textColor="#2A2E2F"
+                        android:textSize="16sp"/>
+
+                    <!-- Simple waveform bar with handle -->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="32dp"
+                        android:layout_marginTop="10dp">
+
+                        <!-- Background track -->
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="8dp"
+                            android:layout_centerVertical="true"
+                            android:background="#E8F1EE" />
+
+                        <!-- Progress fill -->
+                        <ProgressBar
+                            android:id="@+id/timelineFill"
+                            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="8dp"
+                            android:layout_centerVertical="true"
+                            android:max="100"
+                            android:progress="0"
+                            android:progressTint="#BFDCD3"
+                            android:progressBackgroundTint="#E8F1EE" />
+
+                        <!-- Handle knob -->
+                        <ImageView
+                            android:id="@+id/timelineHandle"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_circle"
+                            android:layout_marginStart="-8dp"
+                            android:contentDescription="@null" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="10dp">
+
+                        <ImageButton
+                            android:id="@+id/btnPlay"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/bg_icon_chip"
+                            android:contentDescription="Play"
+                            app:tint="#2A2E2F"
+                            app:srcCompat="@drawable/ic_play"/>
+
+                        <View android:layout_width="8dp" android:layout_height="1dp"/>
+
+                        <ImageButton
+                            android:id="@+id/btnPause"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/bg_icon_chip"
+                            android:contentDescription="Pause"
+                            app:tint="#2A2E2F"
+                            app:srcCompat="@drawable/ic_pause"/>
+
+                        <View android:layout_width="8dp" android:layout_height="1dp"/>
+
+                        <ImageButton
+                            android:id="@+id/btnStop"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/bg_icon_chip"
+                            android:contentDescription="Stop"
+                            app:tint="#2A2E2F"
+                            app:srcCompat="@drawable/ic_stop_24"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Metrics grid (HR etc.) -->
+            <GridLayout
+                android:id="@+id/gridMetrics"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="2"
+                android:layout_marginTop="8dp">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="24dp"
+                    app:cardElevation="3dp"
+                    app:cardBackgroundColor="#D9D2E9">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="20dp"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/latestHeartRate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="72 BPM"
+                            android:textStyle="bold"
+                            android:textSize="20sp"
+                            android:textColor="#2A2E2F"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Latest heart rate"
+                            android:textSize="12sp"
+                            android:textColor="#6B7376"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="24dp"
+                    app:cardElevation="3dp"
+                    app:cardBackgroundColor="#DCECCB">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="20dp"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/avgHR"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Avg: 78 BPM"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:textColor="#2A2E2F"/>
+
+                        <TextView
+                            android:id="@+id/maxHR"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Max: 92 BPM"
+                            android:textSize="12sp"
+                            android:textColor="#6B7376"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </GridLayout>
+
+            <!-- Evidence panel -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardEvidence"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="3dp"
+                app:cardBackgroundColor="#FFFFFF">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Evidence from model"
+                        android:textStyle="bold"
+                        android:textColor="#2A2E2F"
+                        android:textSize="16sp"/>
+
+                    <LinearLayout
+                        android:id="@+id/evidenceList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="8dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="-  Energy peak at 0.62s"
+                            android:textColor="#2A2E2F"
+                            android:textSize="14sp"
+                            android:paddingVertical="4dp"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="-  Band emphasis: 150–400 Hz"
+                            android:textColor="#2A2E2F"
+                            android:textSize="14sp"
+                            android:paddingVertical="4dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Actions -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="12dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/exportPdfBtn"
+                    style="@style/Widget.Material3.Button.ElevatedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:text="Export PDF"
+                    android:textAllCaps="false"
+                    android:textColor="#2A2E2F"
+                    app:backgroundTint="#DDEBE6"
+                    app:cornerRadius="24dp"
+                    app:icon="@drawable/ic_download_24"
+                    app:iconTint="#2A2E2F"
+                    app:iconPadding="8dp"/>
+
+                <View
+                    android:layout_width="8dp"
+                    android:layout_height="1dp"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/shareReportBtn"
+                    style="@style/Widget.Material3.Button.ElevatedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:text="Share"
+                    android:textAllCaps="false"
+                    android:textColor="#2A2E2F"
+                    app:backgroundTint="#CFE7D7"
+                    app:cornerRadius="24dp"
+                    app:icon="@drawable/ic_share_24"
+                    app:iconTint="#2A2E2F"
+                    app:iconPadding="8dp"/>
+            </LinearLayout>
+
+            <!-- Next steps callout -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="#E9F0FF">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="18dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Next steps"
+                        android:textColor="#2A2E2F"
+                        android:textStyle="bold"
+                        android:textSize="16sp"/>
+
+                    <TextView
+                        android:id="@+id/nextSteps"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="If symptoms persist, consider consulting a cardiologist with this report."
+                        android:textColor="#2A2E2F"
+                        android:textSize="14sp"
+                        android:layout_marginTop="6dp"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Bottom nav pill -->
+    <FrameLayout
+        android:id="@+id/bottomContainer"
+        android:layout_width="match_parent"
+        android:layout_height="76dp"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_bottom_nav"
+        android:elevation="8dp"
+        android:clipToPadding="false"
+        android:clipToOutline="true">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNav"
+            style="@style/App.BottomNavigation"
+            android:layout_width="match_parent"
+            android:layout_height="92dp"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:paddingStart="8dp"
+            android:paddingTop="0dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="0dp"
+            app:itemBackground="@null"
+            app:itemHorizontalTranslationEnabled="false"
+            app:itemIconSize="24dp"
+            app:itemIconTint="@color/nav_item_selector"
+            app:itemRippleColor="@null"
+            app:itemTextAppearanceActive="@style/App.BottomNav.TextActive"
+            app:itemTextAppearanceInactive="@style/App.BottomNav.TextInactive"
+            app:itemTextColor="@color/nav_item_selector"
+            app:labelVisibilityMode="labeled"
+            app:menu="@menu/bottom_nav_menu" />
+    </FrameLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

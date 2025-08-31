@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Hridaya Suraksha</string>
+    <string name="Welcome">Welcome!</string>
+    <string name="app_logo">App Logo</string>
+    <string name="tagline">Your AI-powered heart health companion</string>
+    <string name="app_title">Hridaya Suraksha</string>
+    <string name="healthy">Healthy</string>
+    <string name="last_updated">Last updated: Just now</string>
+    <string name="avg_heart_rate">78 bpm</string>
+    <string name="target_zone">92%</string>
+    <string name="battery_level">85%</string>
+    <string name="alerts">0</string>
+    <string name="graph_coming">Graph Coming Soon</string>
+    <string name="cd_navigate_back">Navigate back</string>
+    <string name="cd_search">Search</string>
+    <string name="cd_activity_progress">Walking progress, 88 percent complete</string>
+    <string name="cd_walking_summary">Walking. 88 percent this month. 56 miles walking.</string>
+    <string name="cd_notice">Achievement. You walked 5 percent more than last month.</string>
+    <string name="cd_steps">Steps. 8,412 steps today.</string>
+    <string name="cd_calories">Calories burned. 2,458 kilocalories.</string>
+    <string name="cd_bottom_nav">Bottom navigation</string>
+    <string name="cd_new_activity">Start new activity</string>
+
+    <string name="cd_murmur_summary">Murmur detection. Murmurs present. Confidence 93 percent. clip_2025_08_19.wav, 12 seconds.</string>
+    <string name="cd_murmur_progress">Murmur detection progress ring.</string>
+
+</resources>

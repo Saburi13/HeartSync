@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "782590801625",
+    "project_id": "hridaya-suraksha-ac4a7",
+    "storage_bucket": "hridaya-suraksha-ac4a7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:782590801625:android:13d04ece3da37d9de9f0c8",
+        "android_client_info": {
+          "package_name": "com.example.hridayasuraksha"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "782590801625-1n94ubdni6l5p062bvh191p79u2fdfrg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hridayasuraksha",
+            "certificate_hash": "d898b77d985a0eedda5fa9841eac54f437f9dfea"
+          }
+        },
+        {
+          "client_id": "782590801625-lbcdbl3f316gtb5natct4r6kqvnofo64.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCP85uEeuug614i_Uemg2lMbRbH1r_ICOs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "782590801625-lbcdbl3f316gtb5natct4r6kqvnofo64.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

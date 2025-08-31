@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg">#F5F6FA</color>
+    <color name="cardBg">#FFFFFFFF</color>
+    <color name="primary">#4F46E5</color>
+    <color name="primaryDim">#E9E8FF</color>
+    <color name="success">#22C55E</color>
+    <color name="warning">#F59E0B</color>
+    <color name="danger">#EF4444</color>
+    <color name="divider">#EEF2F7</color>
+
+        <!-- Primary Theme Colors -->
+        <color name="purple_200">#BB86FC</color>
+        <color name="purple_500">#6200EE</color>
+        <color name="purple_700">#3700B3</color>
+        <color name="teal_200">#03DAC5</color>
+        <color name="teal_700">#018786</color>
+        <color name="white">#FFFFFF</color>
+        <color name="black">#000000</color>
+
+        <!-- Shades for Text -->
+        <color name="gray">#9E9E9E</color>
+        <color name="dark_gray">#616161</color>
+
+        <!-- Status Colors -->
+        <color name="red">#E53935</color>
+        <color name="green">#43A047</color>
+        <color name="yellow">#FBC02D</color>
+        <color name="lightRed">#FFEBEE</color>
+
+        <!-- UI Accent Colors -->
+        <color name="resultGreen">#4CAF50</color>
+        <color name="murmurGreen">#A5D6A7</color>
+        <color name="murmurRed">#FFCDD2</color>
+        <color name="murmurYellow">#FFF59D</color>
+
+        <!-- Custom for Dashboard -->
+        <color name="cardBackground">#F5F5F5</color>
+        <color name="cardBorder">#E0E0E0</color>
+        <color name="blueAccent">#2962FF</color>
+
+
+    <color name="secondary">#8E7CC3</color> <!-- Soft lavender -->
+    <color name="accentBlue">#4A90E2</color> <!-- Calm blue -->
+    <color name="successGreen">#4CAF50</color> <!-- Health OK -->
+    <color name="warningYellow">#FFD54F</color> <!-- Mild warning -->
+    <color name="errorRed">#E57373</color> <!-- Alert -->
+    <color name="backgroundLight">#F8F9FD</color>
+
+    <!-- Primary Colors -->
+    <color name="primary_green">#4CAF50</color>
+    <color name="primary_blue">#2196F3</color>
+
+    <!-- Backgrounds -->
+    <color name="light_gray">#F7F7F9</color>
+
+    <!-- Accent Pastels -->
+    <color name="pastel_green">#C8E6C9</color>
+    <color name="pastel_blue">#BBDEFB</color>
+    <color name="pastel_purple">#E1BEE7</color>
+
+    <color name="textPrimary">#2A2E2F</color>
+    <color name="textSecondary">#6B7376</color>
+    <color name="cardMint">#DDEBE6</color>
+    <color name="cardLavender">#D9D2E9</color>
+    <color name="cardGreen">#DCECCB</color>
+    <color name="cardNotice">#DDEBEF</color>
+    <color name="cardMurmur">#E9F0FF</color>
+    <color name="chipBg">#EFF4F2</color>
+    <color name="ringOuter">#E8F1EE</color>
+    <color name="ringMurmur">#BFD2F5</color>
+    <color name="navActive">#2A2E2F</color>
+    <color name="navInactive">#8A9194</color>
+    <color name="fabMint">#CFE7D7</color>
+
+    }
+</resources>
